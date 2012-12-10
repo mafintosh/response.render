@@ -1,0 +1,8 @@
+{
+ "name":"response.render",
+ "version":"0.1.0",
+ "repository": "git://github.com/mafintosh/response.render",
+ "description":"pejs template rendering for root",
+ "keywords": ["root", "pejs", "render", "template"],
+ "author": "Mathias Buus Madsen <mathiasbuus@gmail.com>"
+}
