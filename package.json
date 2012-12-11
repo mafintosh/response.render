@@ -1,6 +1,6 @@
 {
  "name":"response.render",
- "version":"0.1.3",
+ "version":"0.1.4",
  "dependencies": {"pejs":"0.3.x"},
  "repository": "git://github.com/mafintosh/response.render",
  "description":"pejs template rendering for root",

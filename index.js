@@ -1,8 +1,11 @@
 var pejs = require('pejs');
 
-module.exports = function(app) {
+module.exports = function(app, helpers) {
+	if (typeof helpers === 'string') helpers = require(helpers);
+
 	app.on('route', function(request, response) {
 		response.locals = response.locals || {};
+		if (helpers) response.locals.helpers = helpers;
 	});
 
 	app.use('response.render', function(name, locals) {
