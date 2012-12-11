@@ -1,11 +1,21 @@
 var pejs = require('pejs');
 
-module.exports = function(app, helpers) {
-	if (typeof helpers === 'string') helpers = require(helpers);
+module.exports = function(app, globals) {
+	globals = globals || {};
+
+	var mixin = function(locals) {
+                Object.keys(response.locals).forEach(function(key) {
+                        locals[key] = locals[key] || response.locals[key];
+                });
+                Object.keys(globals).forEach(function(key) {
+                        locals[key] = locals[key] || globals[key];
+                });
+
+		return locals;
+	};
 
 	app.on('route', function(request, response) {
 		response.locals = response.locals || {};
-		if (helpers) response.locals.helpers = helpers;
 	});
 
 	app.use('response.render', function(name, locals) {
@@ -16,11 +26,7 @@ module.exports = function(app, helpers) {
 			name = 'index';
 		}
 
-		locals = locals || {};
-
-		Object.keys(response.locals).forEach(function(key) {
-			locals[key] = locals[key] || response.locals[key];
-		});
+		locals = mixin(locals || {});
 
 		pejs.render(name, locals, function(err, result) {
 			if (err) return response.error(err);
