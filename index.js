@@ -17,7 +17,10 @@ module.exports = function(app, helpers) {
 		}
 
 		locals = locals || {};
-		locals.__proto__ response.locals; // TODO: test performance on this __proto__ link
+
+		Object.keys(response.locals).forEach(function(key) {
+			locals[key] = locals[key] || response.locals[key];
+		});
 
 		pejs.render(name, locals, function(err, result) {
 			if (err) return response.error(err);
