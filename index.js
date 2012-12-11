@@ -3,13 +3,13 @@ var pejs = require('pejs');
 module.exports = function(app, globals) {
 	globals = globals || {};
 
-	var mixin = function(locals) {
-                Object.keys(response.locals).forEach(function(key) {
-                        locals[key] = locals[key] || response.locals[key];
-                });
-                Object.keys(globals).forEach(function(key) {
-                        locals[key] = locals[key] || globals[key];
-                });
+	var mixin = function(locals, defaults) {
+		Object.keys(defaults).forEach(function(key) {
+			locals[key] = locals[key] || defaults[key];
+		});
+		Object.keys(globals).forEach(function(key) {
+			locals[key] = locals[key] || globals[key];
+		});
 
 		return locals;
 	};
@@ -26,7 +26,7 @@ module.exports = function(app, globals) {
 			name = 'index';
 		}
 
-		locals = mixin(locals || {});
+		locals = mixin(locals || {}, response.locals);
 
 		pejs.render(name, locals, function(err, result) {
 			if (err) return response.error(err);
