@@ -1,7 +1,7 @@
 {
  "name":"response.render",
- "version":"0.1.5",
- "dependencies": {"pejs":"0.3.x"},
+ "version":"0.1.6",
+ "dependencies": {"pejs":"~0.4.1"},
  "repository": "git://github.com/mafintosh/response.render",
  "description":"pejs template rendering for root",
  "keywords": ["root", "pejs", "render", "template"],
