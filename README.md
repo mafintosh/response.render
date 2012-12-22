@@ -17,6 +17,7 @@ app.use(require('response.render'), {
 
 app.all(function(request, response, next) {
 	response.locals.user = {username:'test-user'}; // set default locals
+	next();
 })
 
 app.get(function(request, response) {
